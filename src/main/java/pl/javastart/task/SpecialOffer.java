@@ -6,21 +6,29 @@ import java.time.LocalTime;
 public class SpecialOffer {
     Product product;
     String description;
-    int discount;
+    double discount;
+    double discountPrice;
     LocalDate startOfSale;
     LocalDate endOfSale;
 
-    SpecialOffer(Product product, String description, LocalDate startOfSale, int duration, int discount) {
+    @SuppressWarnings("checkstyle:WhitespaceAround")
+    SpecialOffer(Product product, String description, LocalDate startOfSale, int duration, double discount) {
         this.product = product;
         this.description = description;
         this.startOfSale = startOfSale;
         this.discount = discount;
         this.startOfSale = startOfSale;
         endOfSale = LocalDate.of(startOfSale.getYear(), startOfSale.getMonth(), startOfSale.getDayOfMonth() + duration);
+        this.discountPrice = product.price - (product.price * (discount  / 100));
     }
 
-    double getDiscount(double price, int discount) {
-        double newPrice = price - (price * discount);
-        return newPrice;
+    double discountPrice(double price, int discount) {
+        return this.discountPrice;
+    }
+
+    void showInfo() {
+        System.out.println("SUPER PROMOCJA kup w terminie od " + startOfSale + " do" + endOfSale);
+        System.out.println(product.name + " w nowej niższej cenie o " + discount + " % za jedyne " + this.discountPrice + " zł");
+        System.out.println("Cena regularna: " + product.price + " zł");
     }
 }

@@ -8,4 +8,14 @@ public class Category {
         this.name = name;
         this.description = description;
     }
+
+    Category() {
+        this.name = "unknown";
+        this.description = "unknown";
+    }
+
+    void showInfo() {
+        System.out.println("Nazwa kategorii: " + name);
+        System.out.println("Opis kategorii: " + description);
+    }
 }
