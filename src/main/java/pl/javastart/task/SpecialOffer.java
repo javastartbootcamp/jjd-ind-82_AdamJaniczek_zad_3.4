@@ -1,7 +1,6 @@
 package pl.javastart.task;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class SpecialOffer {
     Product product;
@@ -11,15 +10,13 @@ public class SpecialOffer {
     LocalDate startOfSale;
     LocalDate endOfSale;
 
-    @SuppressWarnings("checkstyle:WhitespaceAround")
-    SpecialOffer(Product product, String description, LocalDate startOfSale, int duration, double discount) {
+    SpecialOffer(Product product, String description, LocalDate startOfSale, int saleDurationInDays, double discount) {
         this.product = product;
         this.description = description;
-        this.startOfSale = startOfSale;
         this.discount = discount;
         this.startOfSale = startOfSale;
-        endOfSale = LocalDate.of(startOfSale.getYear(), startOfSale.getMonth(), startOfSale.getDayOfMonth() + duration);
-        this.discountPrice = product.price - (product.price * (discount  / 100));
+        this.endOfSale = startOfSale.plusDays(saleDurationInDays);
+        this.discountPrice = product.price - (product.price * (discount / 100));
     }
 
     double discountPrice(double price, int discount) {
